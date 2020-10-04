@@ -12,7 +12,7 @@
 
 
 
-<title>Archives: 2020/10 | DonaldKing</title>
+<title>Add gitalk to your blog to support comments | DonaldKing</title>
 
 
 
@@ -111,31 +111,191 @@
     }
 </script>
         <div class="main">
-            <div class="post-wrap archive">
+            <div class="container">
     
     
-        
-
-        
-            <h3>2020</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2020/10/03/Add-gitalk-to-your-blog-to-support-comments/">Add gitalk to your blog to support comments</a>
-            <span class="archive-item-date">October 3, 2020</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2020/10/02/White-Jotter/">White Jotter</a>
-            <span class="archive-item-date">October 2, 2020</span>
-        </article>
-    
-    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
 </div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Add gitalk to your blog to support comments</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Donald Huang</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 3, 2020&nbsp;&nbsp;21:01:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Hexo/">Hexo</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><code>gitalk</code> is a modern comment component based on GitHub Issue and Preact. You can integrate gitalk to your blog to support <code>comments</code>.</p>
+<h2 id="Create-a-repo-on-GitHub-to-store-comments"><a href="#Create-a-repo-on-GitHub-to-store-comments" class="headerlink" title="Create a repo on GitHub to store comments"></a>Create a repo on GitHub to store comments</h2><p>For example, I create a repo named blog-comments.</p>
+<p>Remember to enable issues in the setting page of this repo.</p>
+<h2 id="Register-an-OAuth-application-on-GitHub"><a href="#Register-an-OAuth-application-on-GitHub" class="headerlink" title="Register an OAuth application on GitHub"></a>Register an OAuth application on GitHub</h2><p>This application will be used by <code>gitalk</code>.</p>
+<p>Remember to enter you blog url in item Homepage URL and AUthorization callback URL.</p>
+<p>Copy Client ID and Client Secret. You can also check your application at<br><a target="_blank" rel="noopener" href="https://github.com/settings/developers">https://github.com/settings/developers</a>.</p>
+<h2 id="Configure-Hexo"><a href="#Configure-Hexo" class="headerlink" title="Configure Hexo"></a>Configure Hexo</h2><blockquote>
+<p>Create file <code>comment.ejs</code> in folder <code>themes/me/layout_partial</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk({</span><br><span class="line">        clientID: <span class="string">'&lt;%= theme.gitalk.clientID %&gt;'</span>,</span><br><span class="line">        clientSecret: <span class="string">'&lt;%= theme.gitalk.clientSecret %&gt;'</span>,</span><br><span class="line">        id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">        repo: <span class="string">'&lt;%= theme.gitalk.repo %&gt;'</span>,</span><br><span class="line">        owner: <span class="string">'&lt;%= theme.gitalk.owner %&gt;'</span>,</span><br><span class="line">        admin: <span class="string">'&lt;%= theme.gitalk.admin %&gt;'</span></span><br><span class="line">    })</span><br><span class="line">    gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Note if your theme differs mine, you may need to find proper location to store <code>comment.ejs</code>.</p>
+<blockquote>
+<p>Embed <code>comment.js</code> in your <code>post.ejs</code> file</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%# gitalk comments %&gt;</span><br><span class="line">   &lt;%if(theme.gitalk.enable){%&gt;</span><br><span class="line">       &lt;%- partial('_partial/comment') %&gt;</span><br><span class="line">&lt;%}%&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>Configure gitalk parameters in <code>_config.yml</code></p>
+</blockquote>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gittalk comments</span></span><br><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">owner:</span> <span class="string">your-github-username</span> <span class="comment"># github username</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">blog-comments</span> <span class="comment"># repo name to store comments</span></span><br><span class="line">  <span class="attr">admin:</span> <span class="string">your-github-username</span> <span class="comment"># owner of repo above</span></span><br><span class="line">  <span class="attr">clientID:</span> <span class="string">your-client-id</span>  <span class="comment"># application id and secret</span></span><br><span class="line">  <span class="attr">clientSecret:</span> <span class="string">your-client-secret</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>After publish, you need to login with your GitHub account at the bottom of the current post, then you’ll find you (and other users) can comment your blog. All comments will be stored under <code>issues</code> of your branch <code>blog-comments</code>.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Donald Huang</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Hexo/"># Hexo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/10/02/White-Jotter/">White Jotter</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
