@@ -119,15 +119,12 @@
         <h2 class="post-title">About</h2>
         
         <section class="post-content">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
-
-        <div id="aplayer-TmfWWpUf" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <div id="aplayer-YGgRYXek" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-TmfWWpUf"),
+            element: document.getElementById("aplayer-YGgRYXek"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -146,7 +143,7 @@
 
 
 
-<h3 id="Hi-there-I’m-Donald"><a href="#Hi-there-I’m-Donald" class="headerlink" title="Hi there!   I’m Donald:"></a>Hi there!   I’m Donald:</h3><img align='right' src="https://github-readme-stats.vercel.app/api?username=realdonald1994&show_icons=true&hide_border=true">
+<h3 id="Hi-there-I’m-Donald"><a href="#Hi-there-I’m-Donald" class="headerlink" title="Hi there!   I’m Donald:"></a>Hi there!   I’m Donald:</h3><img align="right" src="https://github-readme-stats.vercel.app/api?username=realdonald1994&amp;show_icons=true&amp;hide_border=true">
 <br>
 💻 Full Stack Developer<br>
 🎓 Graduate from Concordia University<br>
@@ -156,7 +153,25 @@
 <br>
 
 <p>⭐️ From <a target="_blank" rel="noopener" href="https://github.com/realdonald1994">Donald</a>                    📝 Linkedin: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/zhongxu-huang/">Donald</a><br></p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
         </section>
     </article>
 </div>
@@ -164,7 +179,8 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-running">© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-show">Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
         
         
         
@@ -172,7 +188,7 @@
         
 
         
-            <span>
+            <span class="footer-running">
               <i class="fa fa-hourglass-start fa-fw steelblue"></i>
               <span id="sitetime"></span>
               <i class="fa fa-hourglass-end fa-fw steelblue"></i>
@@ -210,11 +226,11 @@
                 siteTime();
             </script>
         
-         |
+        <span class="footer-running"> | </span>
         
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <span class="site-pv">
+    <span class="site-pv footer-running">
         Visits:
         <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
     </span>&nbsp;
@@ -333,15 +349,15 @@
     var gitalk = new Gitalk({
         clientID: '',
         clientSecret: '',
-        repo: '',
-        owner: '',
+        repo: 'blog-comments',
+        owner: 'realdonald1994',
         admin: '',
         id: '',
-        labels: ''.split(',').filter(l => l),
-        perPage: '',
-        pagerDirection: '',
-        createIssueManually: '',
-        distractionFreeMode: ''
+        labels: 'Gitalk'.split(',').filter(l => l),
+        perPage: '10',
+        pagerDirection: 'last',
+        createIssueManually: 'true',
+        distractionFreeMode: 'false'
     })
     gitalk.render('gitalk-container')
 </script>-->

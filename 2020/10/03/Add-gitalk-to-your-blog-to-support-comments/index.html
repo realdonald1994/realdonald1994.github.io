@@ -214,21 +214,39 @@
 <h2 id="Configure-Hexo"><a href="#Configure-Hexo" class="headerlink" title="Configure Hexo"></a>Configure Hexo</h2><blockquote>
 <p>Create file <code>comment.ejs</code> in folder <code>themes/me/layout_partial</code></p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">&quot;stylesheet&quot;</span> href=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;gitalk-container&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line">        clientID: <span class="string">&#x27;&lt;%= theme.gitalk.clientID %&gt;&#x27;</span>,</span><br><span class="line">        clientSecret: <span class="string">&#x27;&lt;%= theme.gitalk.clientSecret %&gt;&#x27;</span>,</span><br><span class="line">        id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">        repo: <span class="string">&#x27;&lt;%= theme.gitalk.repo %&gt;&#x27;</span>,</span><br><span class="line">        owner: <span class="string">&#x27;&lt;%= theme.gitalk.owner %&gt;&#x27;</span>,</span><br><span class="line">        admin: <span class="string">&#x27;&lt;%= theme.gitalk.admin %&gt;&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    gitalk.render(<span class="string">&#x27;gitalk-container&#x27;</span>)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk({</span><br><span class="line">        clientID: <span class="string">'&lt;%= theme.gitalk.clientID %&gt;'</span>,</span><br><span class="line">        clientSecret: <span class="string">'&lt;%= theme.gitalk.clientSecret %&gt;'</span>,</span><br><span class="line">        id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">        repo: <span class="string">'&lt;%= theme.gitalk.repo %&gt;'</span>,</span><br><span class="line">        owner: <span class="string">'&lt;%= theme.gitalk.owner %&gt;'</span>,</span><br><span class="line">        admin: <span class="string">'&lt;%= theme.gitalk.admin %&gt;'</span></span><br><span class="line">    })</span><br><span class="line">    gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
 
 <p>Note if your theme differs mine, you may need to find proper location to store <code>comment.ejs</code>.</p>
 <blockquote>
 <p>Embed <code>comment.js</code> in your <code>post.ejs</code> file</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%# gitalk comments %&gt;</span><br><span class="line">   &lt;%if(theme.gitalk.enable)&#123;%&gt;</span><br><span class="line">       &lt;%- partial(&#39;_partial&#x2F;comment&#39;) %&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%# gitalk comments %&gt;</span><br><span class="line">   &lt;%if(theme.gitalk.enable){%&gt;</span><br><span class="line">       &lt;%- partial('_partial/comment') %&gt;</span><br><span class="line">&lt;%}%&gt;</span><br></pre></td></tr></tbody></table></figure>
 
 <blockquote>
 <p>Configure gitalk parameters in <code>_config.yml</code></p>
 </blockquote>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gittalk comments</span></span><br><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">owner:</span> <span class="string">your-github-username</span> <span class="comment"># github username</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">blog-comments</span> <span class="comment"># repo name to store comments</span></span><br><span class="line">  <span class="attr">admin:</span> <span class="string">your-github-username</span> <span class="comment"># owner of repo above</span></span><br><span class="line">  <span class="attr">clientID:</span> <span class="string">your-client-id</span>  <span class="comment"># application id and secret</span></span><br><span class="line">  <span class="attr">clientSecret:</span> <span class="string">your-client-secret</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gittalk comments</span></span><br><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">owner:</span> <span class="string">your-github-username</span> <span class="comment"># github username</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">blog-comments</span> <span class="comment"># repo name to store comments</span></span><br><span class="line">  <span class="attr">admin:</span> <span class="string">your-github-username</span> <span class="comment"># owner of repo above</span></span><br><span class="line">  <span class="attr">clientID:</span> <span class="string">your-client-id</span>  <span class="comment"># application id and secret</span></span><br><span class="line">  <span class="attr">clientSecret:</span> <span class="string">your-client-secret</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>After publish, you need to login with your GitHub account at the bottom of the current post, then you’ll find you (and other users) can comment your blog. All comments will be stored under <code>issues</code> of your branch <code>blog-comments</code>.</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
         </div>
 
         
@@ -278,10 +296,33 @@
     </article>
 </div>
 
+
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.2/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.2/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'blog-comments',
+        owner: 'realdonald1994',
+        admin: '',
+        id: '',
+        labels: 'Gitalk'.split(',').filter(l => l),
+        perPage: '10',
+        pagerDirection: 'last',
+        createIssueManually: 'true',
+        distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+</script>
+
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-running">© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-show">Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
         
         
         
@@ -289,7 +330,7 @@
         
 
         
-            <span>
+            <span class="footer-running">
               <i class="fa fa-hourglass-start fa-fw steelblue"></i>
               <span id="sitetime"></span>
               <i class="fa fa-hourglass-end fa-fw steelblue"></i>
@@ -327,11 +368,11 @@
                 siteTime();
             </script>
         
-         |
+        <span class="footer-running"> | </span>
         
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <span class="site-pv">
+    <span class="site-pv footer-running">
         Visits:
         <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
     </span>&nbsp;
@@ -450,15 +491,15 @@
     var gitalk = new Gitalk({
         clientID: '',
         clientSecret: '',
-        repo: '',
-        owner: '',
+        repo: 'blog-comments',
+        owner: 'realdonald1994',
         admin: '',
         id: '',
-        labels: ''.split(',').filter(l => l),
-        perPage: '',
-        pagerDirection: '',
-        createIssueManually: '',
-        distractionFreeMode: ''
+        labels: 'Gitalk'.split(',').filter(l => l),
+        perPage: '10',
+        pagerDirection: 'last',
+        createIssueManually: 'true',
+        distractionFreeMode: 'false'
     })
     gitalk.render('gitalk-container')
 </script>-->

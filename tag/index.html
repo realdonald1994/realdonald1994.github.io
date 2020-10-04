@@ -131,7 +131,8 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-running">© 2020 - 2020 | Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span class="footer-show">Donald Huang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
         
         
         
@@ -139,7 +140,7 @@
         
 
         
-            <span>
+            <span class="footer-running">
               <i class="fa fa-hourglass-start fa-fw steelblue"></i>
               <span id="sitetime"></span>
               <i class="fa fa-hourglass-end fa-fw steelblue"></i>
@@ -177,11 +178,11 @@
                 siteTime();
             </script>
         
-         |
+        <span class="footer-running"> | </span>
         
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <span class="site-pv">
+    <span class="site-pv footer-running">
         Visits:
         <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
     </span>&nbsp;
@@ -300,15 +301,15 @@
     var gitalk = new Gitalk({
         clientID: '',
         clientSecret: '',
-        repo: '',
-        owner: '',
+        repo: 'blog-comments',
+        owner: 'realdonald1994',
         admin: '',
         id: '',
-        labels: ''.split(',').filter(l => l),
-        perPage: '',
-        pagerDirection: '',
-        createIssueManually: '',
-        distractionFreeMode: ''
+        labels: 'Gitalk'.split(',').filter(l => l),
+        perPage: '10',
+        pagerDirection: 'last',
+        createIssueManually: 'true',
+        distractionFreeMode: 'false'
     })
     gitalk.render('gitalk-container')
 </script>-->
