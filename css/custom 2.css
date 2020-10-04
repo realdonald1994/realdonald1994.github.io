@@ -1,0 +1,12 @@
+.gt-container {
+  max-width: 780px;
+  margin: auto;
+}
+@media screen and (max-width: 599px) {
+  .footer-running {
+    display: none;
+  }
+  .footer-show {
+    display: inline;
+  }
+}
